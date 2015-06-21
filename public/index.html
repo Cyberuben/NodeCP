@@ -2,22 +2,29 @@
 	<head>
 		<title>NodeCP</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<noscript>
-			<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.3/semantic.min.css">
-		</noscript>
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.3/semantic.min.css">
 	</head>
 
 	<body>
+		<!-- No javascript alert -->
 		<noscript>
 			<div class="ui inverted black vertical segment">
 				<div class="ui vertically padded page grid">
 					<div class="column">
-						<h2 class="ui inverted header">Please enable JavaScript in your browser to view this website.</h2>
+						<h2 class="ui inverted header">Please enable JavaScript in your browser to view this website properly.</h2>
 						<p>If your browser does not support JavaScript, please upgrade your browser to a modern browser.</p>
 						<p>An updated selection of recommended browsers can be found here: <a href="http://outdatedbrowser.com/">http://outdatedbrowser.com/</a></p>
 					</div>
 				</div>
 			</div>
 		</noscript>
+
+		<div ng-view></div>
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.3/semantic.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-route.min.js"></script>
+		<script src="/script.js"></script>
 	</body>
 </html>

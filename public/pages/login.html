@@ -1,0 +1,37 @@
+<!-- login.html -->
+<div class="ui vertically padded inverted page grid">
+	<div class="six wide centered column">
+		<form class="ui fluid form segment" ng-controller="loginController">
+			<div class="ui vertically padded grid">
+				<div class="orange column">
+					<h2 class="ui inverted header">Log in</h2>
+				</div>
+			</div>
+
+			<p></p>
+
+			<div class="required field">
+				<div class="ui icon input">
+					<input type="text" placeholder="Username" ng-model="username">
+					<i class="user icon"></i>
+				</div>
+			</div>
+
+			<div class="required field">
+				<div class="ui icon input">
+					<input type="password" placeholder="Password" ng-model="password">
+					<i class="lock icon"></i>
+				</div>
+			</div>
+
+			<div class="field">
+				<div class="ui toggle checkbox">
+					<input type="checkbox" ng-model="remember">
+					<label>Keep me logged in</label>
+				</div>
+			</div>
+
+			<div class="ui submit button" ng-click="login()">Log in</div>
+		</form>
+	</div>
+</div>
