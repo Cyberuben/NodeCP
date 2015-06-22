@@ -1,6 +1,19 @@
 <!-- login.html -->
 <div class="ui vertically padded inverted page grid">
 	<div class="six wide centered column">
+		<div message class="ui message" ng-class="[{icon: message.icon}, message.type]" ng-repeat="message in messages">
+			<i class="close icon" ng-if="message.closable"></i>
+			
+			<i class="icon" ng-class="message.icon" ng-if="message.icon"></i>
+			<div class="content" ng-if="message.icon">
+				<div class="header" ng-if="message.title">{{message.title}}</div>
+				<p>{{message.body}}</p>
+			</div>
+			
+			<div class="header" ng-if="!message.icon && message.title">{{message.title}}</div>
+			<p ng-if="!message.icon && message.body">{{message.body}}</p>
+		</div>
+
 		<form class="ui fluid form segment" ng-controller="loginController">
 			<div class="ui vertically padded grid">
 				<div class="orange column">
