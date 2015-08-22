@@ -1,3 +1,5 @@
+'use strict';
+
 var app = angular.module("NodeCP", ["ngRoute"]);
 
 app.config(function ($routeProvider) {
@@ -5,7 +7,7 @@ app.config(function ($routeProvider) {
 		.when("/login", {
 			templateUrl: "pages/login.html",
 			controller: "loginController"
-		})
+		});
 });
 
 app.directive("message", ["$timeout", function ($timeout) {
@@ -21,7 +23,7 @@ app.directive("message", ["$timeout", function ($timeout) {
 				});
 			}, 0, false);
 		}
-	}
+	};
 }]);
 
 app.controller("loginController", function ($scope) {

@@ -1,3 +1,5 @@
+'use strict';
+
 /*  All extra routing goes below this comment, example:
 	app.get("/test", function (req, res) {
 		res.send("test");
@@ -27,7 +29,7 @@ module.exports = function (app) {
 				console.log("Route added: " + path);
 				app.use(path, routes);
 			}
-			
+
 		}
 	}
 

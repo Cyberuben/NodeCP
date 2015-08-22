@@ -1,8 +1,10 @@
-var express = require("express");
-var path = require("path");
-var favicon = require("serve-favicon");
-var logger = require("morgan");
-var bodyParser = require("body-parser");
+'use strict';
+
+var express = require("express"),
+		path = require("path"),
+		favicon = require("serve-favicon"),
+		logger = require("morgan"),
+		bodyParser = require("body-parser");
 
 // Load express
 var app = express();

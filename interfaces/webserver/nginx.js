@@ -1,7 +1,7 @@
-var os = require("os");
-var fs = require("fs");
-var path = require("path");
-var exec = require("child_process").exec;
+var os = require("os"),
+		fs = require("fs"),
+		path = require("path"),
+		exec = require("child_process").exec;
 
 /**
  * Represents an Nginx instance
@@ -26,15 +26,17 @@ Nginx.prototype.getExecutable = function GetExecutable(callback) {
 	*/
 	function CheckExecuteAllowed(path, callback) {
 		fs.stat(path, (function (err, stats) {
+			var error;
+
 			if(err) {
 				if(err.errno == -4058) {
-					var error = new Error("File does not exist.");
+					error = new Error("File does not exist.");
 					error.code = 1;
 				} else {
 					throw err;
 				}
-			} else if((stats.mode & 00007).toString(8) < 1) {
-				var error = new Error("File is not executable.");
+			} else if((stats.mode & 7).toString(8) < 1) {
+				error = new Error("File is not executable.");
 				error.code = 2;
 			}
 
@@ -45,7 +47,7 @@ Nginx.prototype.getExecutable = function GetExecutable(callback) {
 	if(typeof this.executablePath == "undefined") {
 		// Executable path was not provided to the class, attempt to detect it in PATH.
 		switch(os.platform()) {
-			case "win32": 
+			case "win32":
 				exec("where nginx", (function (err, stdout, stderr) {
 					if(err) {
 						if(stderr == "INFO: Could not find files for the given pattern(s).\r\n") {
@@ -54,7 +56,7 @@ Nginx.prototype.getExecutable = function GetExecutable(callback) {
 							throw err;
 						}
 					}
-					
+
 					var returnedPath = stdout.replace("\r\n", "");
 					CheckExecuteAllowed(returnedPath, function (err) {
 						if(err) throw err;
@@ -73,7 +75,7 @@ Nginx.prototype.getExecutable = function GetExecutable(callback) {
 							throw err;
 						}
 					}
-					
+
 					var returnedPath = stdout.replace("\n", "");
 					CheckExecuteAllowed(returnedPath, function (err) {
 						if(err) throw err;
@@ -91,7 +93,7 @@ Nginx.prototype.getExecutable = function GetExecutable(callback) {
 			callback(this.executablePath);
 		});
 	}
-}
+};
 
 // Control functions
 
@@ -103,7 +105,7 @@ Nginx.prototype.start = function NginxControlStart(callback) {
 	this.getExecutable(function (executable) {
 		exec(executable, ["-s", "start"], callback);
 	});
-}
+};
 
 /**
  * Stops Nginx if it's running
@@ -113,7 +115,7 @@ Nginx.prototype.stop = function NginxControlStop(callback) {
 	this.getExecutable(function (executable) {
 		exec(executable, ["-s", "stop"], callback);
 	});
-}
+};
 
 /**
  * Restarts Nginx if it's running, starts it if it's not running
@@ -121,7 +123,7 @@ Nginx.prototype.stop = function NginxControlStop(callback) {
 */
 Nginx.prototype.restart = function NginxControlRestart(callback) {
 
-}
+};
 
 /**
  * Reloads all Nginx config files if it's running
@@ -131,7 +133,7 @@ Nginx.prototype.reload = function NginxControlReload(callback) {
 	this.getExecutable(function (executable) {
 		exec(executable, ["-s", "reload"], callback);
 	});
-}
+};
 
 // Config functions
 
@@ -141,7 +143,7 @@ Nginx.prototype.reload = function NginxControlReload(callback) {
 */
 Nginx.prototype.configExists = function NginxConfigExists(name) {
 
-}
+};
 
 /**
  * Creates a config file if it doesn't already exist
@@ -149,38 +151,38 @@ Nginx.prototype.configExists = function NginxConfigExists(name) {
 */
 Nginx.prototype.createConfig = function NginxConfigCreate(name) {
 
-}
+};
 
 /**
  * Updates a config file
  * @param {string} name - Name of the config file to update
 */
 Nginx.prototype.updateConfig = function NginxConfigUpdate(name) {
-	
-}
+
+};
 
 /**
  * Deletes a config file
  * @param {string} name - Name of the config file to delete
 */
 Nginx.prototype.deleteConfig = function NginxConfigDelete(name) {
-	
-}
+
+};
 
 /**
  * Disables a config file if it's enable
  * @param {string} name - Name of the config file to disable
 */
 Nginx.prototype.disableConfig = function NginxConfigDisable(name) {
-	
-}
+
+};
 
 /**
  * Enables a config file if it's disabled
  * @param {string} name - Name of the config file to enable
 */
 Nginx.prototype.enableConfig = function NginxConfigEnable(name) {
-	
-}
+
+};
 
 module.exports = Nginx;

@@ -1,5 +1,7 @@
-var express = require("express");
-var router = express.Router();
+'use strict';
+
+var express = require("express"),
+		router = express.Router();
 
 router.get("/", function (req, res) {
 	var path = require("path");
@@ -7,7 +9,7 @@ router.get("/", function (req, res) {
 
 	fs.readFile(path.resolve("public/index.html"), function (err, data) {
 		var minify = require('html-minifier').minify;
-		
+
 		var minifiedHtml = minify(data.toString(), {
 			minifyJS: true,
 			useShortDoctype: true,
