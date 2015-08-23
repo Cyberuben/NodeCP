@@ -21,7 +21,7 @@ module.exports = function (app) {
 		} else {
 			// "index.js" will be treated as directory index
 			// A directory containing "index.js" may not also contain a subdirectory called "index", and the other way around
-			if(path.indexOf("/index") == 0) {
+			if(path.indexOf("/index") === 0) {
 				var indexPath = path.split("index").join("");
 				console.log("Index added: " + indexPath);
 				app.use(indexPath, routes);
