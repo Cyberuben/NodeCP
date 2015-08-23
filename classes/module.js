@@ -21,7 +21,7 @@ Settings: object
 */
 var Modules={}
 
-var Module = function Module (id,module) {
+var Module = function Module (id,mdl) {
     // If a module with this ID has already loaded, then we use that instead. In this case the module parameter is optional.
     if (Modules[id]) {
       return Modules[id];
@@ -31,14 +31,14 @@ var Module = function Module (id,module) {
     this.id = id;
 
     // Require the module
-    var info=require(module);
+    var info=require(mdl);
 
-    this.name = module.name;
-    this.version = module.version;
-    this.doStart = module.start;
-    this.doStop = module.stop;
-    this.doInstall = module.install;
-    this.Settings = module.DefaultSettings;
+    this.name = mdl.name;
+    this.version = mdl.version;
+    this.doStart = mdl.start;
+    this.doStop = mdl.stop;
+    this.doInstall = mdl.install;
+    this.Settings = mdl.DefaultSettings;
 
     // Load the settings, then allow the user to click "Install" or automatically "Start" depending on whether the Module with this ID is installed or not.
 
